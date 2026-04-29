@@ -75,19 +75,12 @@ body {
 }
 
 .logo-mark {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 52px;
-  height: 52px;
-  background: rgba(195, 182, 171, 0.18);
-  border: 2px solid var(--accent-light);
-  border-radius: 12px;
-  color: var(--accent-light);
-  font-weight: 700;
-  font-size: 17px;
-  letter-spacing: 0.04em;
-  margin-bottom: 14px;
+  display: block;
+  height: 48px;
+  width: auto;
+  max-width: 200px;
+  object-fit: contain;
+  margin: 0 auto 16px;
 }
 
 .card-header h1 {
