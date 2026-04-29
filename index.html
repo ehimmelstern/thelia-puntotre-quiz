@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Puntotre Knowledge Quiz</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ── Start Screen ──────────────────────────────────────────────────── -->
+  <div id="screen-start" class="screen active">
+    <div class="card">
+      <div class="card-header">
+        <div class="logo-mark">TG</div>
+        <h1 id="quiz-title-start">Puntotre Knowledge Quiz</h1>
+        <p class="subtitle">Enter your details to begin</p>
+      </div>
+      <div class="card-body">
+        <div class="form-group">
+          <label for="input-name">Full Name</label>
+          <input type="text" id="input-name" placeholder="Your full name" autocomplete="name">
+        </div>
+        <div class="form-group">
+          <label for="input-email">Email Address</label>
+          <input type="email" id="input-email" placeholder="your@email.com" autocomplete="email">
+        </div>
+        <div id="resume-banner" class="resume-banner hidden">
+          <div class="resume-banner-inner">
+            <span>You have a quiz in progress.</span>
+            <div class="resume-actions">
+              <button class="btn-link" id="btn-resume">Resume</button>
+              <span class="divider">|</span>
+              <button class="btn-link" id="btn-start-fresh">Start Fresh</button>
+            </div>
+          </div>
+        </div>
+        <div id="start-error" class="error-msg hidden"></div>
+        <button class="btn btn-primary btn-full" id="btn-start">Begin Assessment</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Quiz Screen ───────────────────────────────────────────────────── -->
+  <div id="screen-quiz" class="screen">
+    <div class="card quiz-card">
+      <div class="quiz-header">
+        <div class="quiz-meta">
+          <span id="question-counter">Question 1 of 10</span>
+          <button class="btn-link save-btn" id="btn-save-exit">Save &amp; Exit</button>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+      </div>
+      <div class="card-body quiz-body">
+        <p class="question-text" id="question-text">Loading question...</p>
+        <div class="options-list" id="options-list"></div>
+      </div>
+      <div class="quiz-footer">
+        <button class="btn btn-secondary" id="btn-prev" disabled>Back</button>
+        <button class="btn btn-primary" id="btn-next" disabled>Next</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Results Screen ───────────────────────────────────────────────── -->
+  <div id="screen-results" class="screen">
+    <div class="card results-card">
+      <div id="result-pass" class="result-header result-pass hidden">
+        <div class="result-icon">&#10003;</div>
+        <h2>Congratulations!</h2>
+        <p id="result-pass-msg">You passed the assessment.</p>
+      </div>
+      <div id="result-fail" class="result-header result-fail hidden">
+        <div class="result-icon">&#10007;</div>
+        <h2>Not quite there</h2>
+        <p id="result-fail-msg">You didn't reach the pass mark this time.</p>
+      </div>
+
+      <div class="score-display">
+        <div class="score-ring">
+          <svg viewBox="0 0 120 120" class="ring-svg">
+            <circle class="ring-bg" cx="60" cy="60" r="50"/>
+            <circle class="ring-fill" id="ring-fill" cx="60" cy="60" r="50"/>
+          </svg>
+          <div class="score-text">
+            <span class="score-pct" id="score-pct">0%</span>
+            <span class="score-label" id="score-label">Score</span>
+          </div>
+        </div>
+        <div class="score-breakdown">
+          <div class="breakdown-item">
+            <span class="breakdown-num" id="score-correct">0</span>
+            <span class="breakdown-label">Correct</span>
+          </div>
+          <div class="breakdown-divider"></div>
+          <div class="breakdown-item">
+            <span class="breakdown-num" id="score-total">0</span>
+            <span class="breakdown-label">Total</span>
+          </div>
+          <div class="breakdown-divider"></div>
+          <div class="breakdown-item">
+            <span class="breakdown-num" id="score-threshold">80%</span>
+            <span class="breakdown-label">Pass Mark</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="cert-section" class="cert-section hidden">
+        <div class="cert-notice">
+          <span class="cert-icon">&#127881;</span>
+          <div>
+            <strong>Congratulations — you passed!</strong>
+            <p>Download your certificate of completion below.</p>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-full" id="btn-download-cert" style="margin-top: 12px;">Download Certificate (PDF)</button>
+      </div>
+
+      <div class="review-section">
+        <button class="btn-link review-toggle" id="btn-review-toggle">
+          <span id="review-toggle-text">Show Answer Review &#9660;</span>
+        </button>
+        <div id="review-list" class="review-list hidden"></div>
+      </div>
+
+      <div class="results-actions">
+        <button class="btn btn-primary" id="btn-retake">Take Again</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Loading Overlay ──────────────────────────────────────────────── -->
+  <div id="loading-overlay" class="loading-overlay hidden">
+    <div class="spinner"></div>
+    <p id="loading-msg">Submitting your answers...</p>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="puntotre.js"></script>
+</body>
+</html>
